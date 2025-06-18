@@ -4,11 +4,13 @@ import string
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
+from nltk.tokenize import RegexpTokenizer
 
+tokenizer = RegexpTokenizer(r'\w+')
 # Download required NLTK resources (do only once)
 nltk.download('punkt')
 nltk.download('stopwords')
-nltk.data.path.append('./nltk_data')
+# nltk.data.path.append('./nltk_data')
 
 # Initialize stemmer
 ps = PorterStemmer()
@@ -17,7 +19,7 @@ ps = PorterStemmer()
 # Preprocessing function
 def transform_text(text):
     text = text.lower()
-    text = nltk.word_tokenize(text)
+    text = tokenizer.tokenize(text)
 
     y = []
     for i in text:
